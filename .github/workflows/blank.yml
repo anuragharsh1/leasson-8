@@ -1,0 +1,32 @@
+name : artifacts
+
+on: 
+  push:
+
+jobs: 
+
+   download-artifacts:
+      needs: upload-artifacts
+      name: job to download the artifacts
+      runs-on: ubuntu-latest
+      steps: 
+        - uses: actions/download-artifact@v4.1.8
+          with: 
+               name: latest-dowload-artifact
+        - name: Display structure of dowloaded artifact
+          run: ls -R
+        - run: cat myArtifact.txt
+         
+
+
+
+   upload-artifacts:
+      name: job to upload an artifact
+      runs-on: ubuntu-latest
+      steps:
+         - run: docker info > myArtifact.txt
+         - uses: actions/upload-artifact@v3.2.1-node20
+           with:
+              name: my-artifact
+              path: myArtifact.txt
+          
