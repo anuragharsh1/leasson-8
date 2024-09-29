@@ -10,9 +10,9 @@ jobs:
       name: job to download the artifacts
       runs-on: ubuntu-latest
       steps: 
-        - uses: actions/download-artifact@v4
+        - uses: actions/download-artifact@v4.1.8
           with: 
-               name: latest-dowload-artifact
+               name: my-artifact
         - name: Display structure of dowloaded artifact
           run: ls -R
         - run: cat myArtifact.txt
@@ -25,7 +25,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
          - run: docker info > myArtifact.txt
-         - uses: actions/upload-artifact@v4
+         - uses: actions/upload-artifact@v4.4.0
            with:
               name: my-artifact
               path: myArtifact.txt
